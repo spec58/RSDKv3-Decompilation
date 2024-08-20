@@ -4,9 +4,16 @@ project(RetroEngine)
 
 set(DECOMP_VERSION 1.3.2)
 
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O3")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
+
+# Optimizations to TSP
+#set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -mtune=cortex-a53 -mcpu=cortex-a53")
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mtune=cortex-a53 -mcpu=cortex-a53")
+
 option(RETRO_FORCE_CASE_INSENSITIVE "Forces case insensivity." OFF)
 option(RETRO_MOD_LOADER "Enables or disables the mod loader." ON)
-option(RETRO_USE_HW_RENDER "Enables usage of Hardware Render as an option." ON)
+option(RETRO_USE_HW_RENDER "Enables usage of Hardware Render as an option." OFF)
 option(RETRO_DISABLE_PLUS "Disables Plus. Should be set on for any public releases." OFF)
 option(RETRO_ORIGINAL_CODE "Removes any change that differs from the original code, a playable game can't be built this way." OFF)
 

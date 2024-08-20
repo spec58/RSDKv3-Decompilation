@@ -244,16 +244,19 @@ void ScanModFolder(ModInfo *info)
             for (auto data_de : data_rdi) {
                 if (data_de.is_regular_file()) {
                     char modBuf[0x100];
+                    
+                    // Finds the last found Data folder instead of first instance (Fixes TSP mod loading)
+                    std::string modBuf_s = data_de.path().string();
                     StrCopy(modBuf, data_de.path().string().c_str());
-                    char folderTest[4][0x10] = {
+                    std::string folderTest[4] = {
                         "Data/",
                         "Data\\",
                         "data/",
                         "data\\",
                     };
                     int tokenPos = -1;
-                    for (int i = 0; i < 4; ++i) {
-                        tokenPos = FindStringToken(modBuf, folderTest[i], 1);
+                    for (const auto& fdr : folderTest) {
+                        tokenPos = modBuf_s.rfind(fdr);
                         if (tokenPos >= 0)
                             break;
                     }

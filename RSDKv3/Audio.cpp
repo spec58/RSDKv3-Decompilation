@@ -46,6 +46,7 @@ SDL_AudioStream *ogv_stream;
 
 int InitAudioPlayback()
 {
+    SDL_Init(SDL_INIT_AUDIO);
     StopAllSfx(); //"init"
 #if RETRO_USING_SDL1 || RETRO_USING_SDL2
     SDL_AudioSpec want;
